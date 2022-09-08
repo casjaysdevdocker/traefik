@@ -1,0 +1,62 @@
+################################################################
+# Global configuration
+################################################################
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: true
+
+################################################################
+# EntryPoints configuration
+################################################################
+# EntryPoints definition
+# Optional
+entryPoints:
+  web:
+    address: :80
+
+  websecure:
+    address: :443
+
+################################################################
+# Traefik logs configuration
+################################################################
+# Traefik logs
+# Optional
+#log:
+#  level: WARN
+#  filePath: log/traefik.log
+#  format: json
+
+################################################################
+# Access logs configuration
+################################################################
+# Enable access logs
+# Optional
+#accessLog:
+#  filePath: /path/to/log/log.txt
+#  format: common
+
+################################################################
+# API and dashboard configuration
+################################################################
+# Enable API and dashboard
+# Optional
+api:
+  insecure: true
+  dashboard: true
+
+################################################################
+# Ping configuration
+################################################################
+#ping:
+  entryPoint: traefik
+
+################################################################
+# Docker configuration backend
+################################################################
+#providers:
+#  docker:
+#    endpoint: tcp://10.10.10.10:2375
+#    defaultRule: Host(`{{ normalize .Name }}.docker.localhost`)
+#    exposedByDefault: true
+
