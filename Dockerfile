@@ -1,7 +1,7 @@
 FROM casjaysdevdocker/alpine:latest as build
 
 ARG LICENSE=WTFPL \
-  IMAGE_NAME=traefix \
+  IMAGE_NAME=traefik \
   TIMEZONE=America/New_York \
   PORT=
 
@@ -13,7 +13,7 @@ ENV SHELL=/bin/bash \
 RUN mkdir -p /bin/ /config/ /data/ && \
   rm -Rf /bin/.gitkeep /config/.gitkeep /data/.gitkeep && \
   apk update -U --no-cache && \
-  apk add --no-cache traefix
+  apk add --no-cache traefik
 
 COPY ./bin/. /usr/local/bin/
 COPY ./config/. /config/
@@ -22,10 +22,10 @@ COPY ./data/. /data/
 FROM scratch
 ARG BUILD_DATE="$(date +'%Y-%m-%d %H:%M')"
 
-LABEL org.label-schema.name="traefix" \
-  org.label-schema.description="Containerized version of traefix" \
-  org.label-schema.url="https://hub.docker.com/r/casjaysdevdocker/traefix" \
-  org.label-schema.vcs-url="https://github.com/casjaysdevdocker/traefix" \
+LABEL org.label-schema.name="traefik" \
+  org.label-schema.description="Containerized version of traefik" \
+  org.label-schema.url="https://hub.docker.com/r/casjaysdevdocker/traefik" \
+  org.label-schema.vcs-url="https://github.com/casjaysdevdocker/traefik" \
   org.label-schema.build-date=$BUILD_DATE \
   org.label-schema.version=$BUILD_DATE \
   org.label-schema.vcs-ref=$BUILD_DATE \
@@ -37,7 +37,7 @@ LABEL org.label-schema.name="traefix" \
 
 ENV SHELL="/bin/bash" \
   TERM="xterm-256color" \
-  HOSTNAME="casjaysdev-traefix" \
+  HOSTNAME="casjaysdev-traefik" \
   TZ="${TZ:-America/New_York}"
 
 WORKDIR /root
@@ -49,6 +49,6 @@ EXPOSE $PORT
 COPY --from=build /. /
 
 ENTRYPOINT [ "tini", "--" ]
-HEALTHCHECK CMD [ "/usr/local/bin/entrypoint-traefix.sh", "healthcheck" ]
-CMD [ "/usr/local/bin/entrypoint-traefix.sh" ]
+HEALTHCHECK CMD [ "/usr/local/bin/entrypoint-traefik.sh", "healthcheck" ]
+CMD [ "/usr/local/bin/entrypoint-traefik.sh" ]
 

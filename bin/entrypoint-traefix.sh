@@ -5,10 +5,10 @@
 # @@Author           :  Jason Hempstead
 # @@Contact          :  jason@casjaysdev.com
 # @@License          :  LICENSE.md
-# @@ReadME           :  entrypoint-traefix.sh --help
+# @@ReadME           :  entrypoint-traefik.sh --help
 # @@Copyright        :  Copyright: (c) 2022 Jason Hempstead, Casjays Developments
 # @@Created          :  Thursday, Sep 08, 2022 10:06 EDT
-# @@File             :  entrypoint-traefix.sh
+# @@File             :  entrypoint-traefik.sh
 # @@Description      :  
 # @@Changelog        :  New script
 # @@TODO             :  Better documentation
@@ -94,8 +94,8 @@ fi
 [ -f "/etc/.env.sh" ] && rm -Rf "/etc/.env.sh"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Additional commands
-[ -d "/config/traefix" ] || mkdir -p "/config/traefix" 
-[ -f "/config/traefix/.yml" ] || cp -Rf "/etc/traefik/traefik.yml" "/config/traefix"
+[ -d "/config/traefik" ] || mkdir -p "/config/traefik" 
+[ -f "/config/traefik/.yml" ] || cp -Rf "/etc/traefik/traefik.yml" "/config/traefik"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 case "$1" in
 --help) # Help message
@@ -120,7 +120,7 @@ healthcheck) # Docker healthcheck
 
 *) # Execute primary command
   if [ $# -eq 0 ]; then
-    traefix
+    traefik
   else
     __exec_bash "/bin/bash"
   fi
