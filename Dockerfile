@@ -49,6 +49,6 @@ EXPOSE $PORT
 COPY --from=build /. /
 
 ENTRYPOINT [ "tini", "--" ]
-HEALTHCHECK CMD [ "/usr/local/bin/entrypoint-traefik.sh", "healthcheck" ]
+HEALTHCHECK --interval=15s --timeout=3s CMD [ "/usr/local/bin/entrypoint-traefik.sh", "healthcheck" ]
 CMD [ "/usr/local/bin/entrypoint-traefik.sh" ]
 
